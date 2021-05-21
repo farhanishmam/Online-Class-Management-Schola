@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Room List Modification</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+<!--===============================================================================================-->	
+<link rel="icon" type="image/png" href="images/icons/favicon.ico"/>
+<link rel="stylesheet" type="text/css" href="fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="assets/bootstrap/css/bootstrap.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="node_modules/animate.css/animate.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="node_modules/select2/dist/css/select2.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="node_modules/perfect-scrollbar/css/perfect-scrollbar.css">
+<!--===============================================================================================-->
+<link rel="stylesheet" type="text/css" href="assets/css_bookroom/main.css">
+<link rel="stylesheet" type="text/css" href="assets/css_otherform/main.css">
+<link rel="stylesheet" type="text/css" href="assets/css_bookroom/util.css">
+<!--===============================================================================================-->
+      <div class="topnav" id="mytopnav">
+	  	<div id = "navContent">
+			<a href = "UserProfile.html">Profile</a>
+            <a href = "UserList.html">User</a>
+            <a href = "BuildingList.html">Building</a>
+            <a class = "active" href = "RoomList.html">Room</a>
+            <a href = "DepartmentList.html">Department</a>
+            <a href = "ProgramList.html">Program</a>
+            <a href = "RoutineList.html">Routine</a>
+		</div>
+		<button id = "logoutButton"><a href="index.html">Log Out</a></button>  
+      </div>  
+</head>
+<body>
+	<div class="limiter">
+		<div id = "containerTable" class="container-table100">
+			 <!-- Contents of the table will be dynamically loaded -->
+		</div>
+		
+	</div>
+	<script src="https://www.gstatic.com/firebasejs/8.2.0/firebase-app.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/8.2.0/firebase-auth.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/8.2.0/firebase-firestore.js"></script>
+	<script>
+		// For Firebase JS SDK v7.20.0 and later, measurementId is optional
+		var firebaseConfig = {
+			apiKey: "AIzaSyC779fYGX4FppGMWHRa7adUBOVUFHVmpMc",
+			authDomain: "classroom-management-sys-62bac.firebaseapp.com",
+			databaseURL: "https://classroom-management-sys-62bac.firebaseio.com",
+			projectId: "classroom-management-sys-62bac",
+			storageBucket: "classroom-management-sys-62bac.appspot.com",
+			appId: "1:629847542385:web:45cc8a1e459b99de7669d0",
+			measurementId: "G-5Q3ZRGNXW8"
+		};
+		// Initialize Firebase
+		firebase.initializeApp(firebaseConfig);
+		//make auth and firestore references
+		const auth = firebase.auth();
+		const db = firebase.firestore();
+		//update firestore settings
+		db.settings({timestampsInSnapshots: true});
+	</script>
+	<script src = "RoomList.js"></script>
+</body>
+</html>
