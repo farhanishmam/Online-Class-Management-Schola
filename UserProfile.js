@@ -1,6 +1,8 @@
 const userTable = document.querySelector('#profile-table');
 const topNav = document.querySelector('#navContent');
 //getting Email of Logged in User
+
+//needs to be updated with MySQL queries
 auth.onAuthStateChanged(user => 
 {
     var email = user.email;
@@ -11,6 +13,7 @@ auth.onAuthStateChanged(user =>
     
 })
 
+//loads the user profile for students, faculties and CRs
 const setupGuides = (data, email) =>
 {
     let html = ``;
@@ -18,7 +21,7 @@ const setupGuides = (data, email) =>
     {
         var tableContent
         const data = doc.data();
-        if(data.Type === 3)
+        if(data.Type === 3) //for faculties
         {
             tableContent = 
             `
@@ -65,41 +68,7 @@ const setupGuides = (data, email) =>
         </table>
         `
         }
-        else if(data.Type === 4)
-        {
-            tableContent = 
-            `
-        <table>
-            <thead>
-                <tr class="table100-head">
-                    <th class="column1">User Profile</th>
-                    <th class="column2"></th>
-                </tr>
-            </thead>
-            <tbody>
-                    <tr>
-                        <td class="column1">Name</td>
-                        <td class="column2">${data.Name}</td>
-                        
-                    </tr>
-                    <tr>
-                        <td class="column1">Email</td>
-                        <td class="column2">${email}</td>
-                        
-                    </tr>
-                    <tr>
-                        <td class="column1">Phone Number</td>
-                        <td class="column2">${data.PhoneNo}</td>    
-                    </tr>
-                    <tr>
-                    <td class="column1">Role</td>
-                    <td class="column2">${data.Role}</td>    
-                </tr>
-            </tbody>
-        </table>
-        `
-        }
-        else
+        else //for student and CRs
         {
         tableContent = 
         `
@@ -157,25 +126,25 @@ const setupGuides = (data, email) =>
         `
         }
         html += tableContent;
-        if(data.Type === 1)
+        if(data.Type === 1) // 1 means student
         {
             topNav.innerHTML = `
                 <a class="active">Profile</a>
                 <a href="Routine.html">View Routine</a>
+                <a href = "Evaluation Sheet.html">Evaluation Sheet</a>
                 <a href="ChangePassword.html">Change Password</a> 
             `
         }
-        else if(data.Type === 2)
+        else if(data.Type === 2) //2 means CR
         {
             topNav.innerHTML = `
                 <a class="active">Profile</a>
                 <a href="Routine.html">View Routine</a>
-                <a href="BookRoom.html">Book Room</a>
-                <a href="BookingRecords.html">Booking Records</a>
+                <a href = "Evaluation Sheet.html">Evaluation Sheet</a>
                 <a href="ChangePassword.html">Change Password</a> 
             `
         }
-        else if(data.Type === 3)
+        else if(data.Type === 3) //3 means faculty
         {
             topNav.innerHTML = `
                 <a class="active">Profile</a>
@@ -184,19 +153,6 @@ const setupGuides = (data, email) =>
                 <a href="ChangePassword.html">Change Password</a> 
               `
         }
-        else if(data.Type === 4)
-        {
-            topNav.innerHTML = `
-                <a class="active">Profile</a>
-                <a href = "UserList.html">User</a>
-                <a href = "BuildingList.html">Building</a>
-                <a href = "RoomList.html">Room</a>
-                <a href = "DepartmentList.html">Department</a>
-                <a href = "ProgramList.html">Program</a>
-                <a href = "RoutineList.html">Routine</a>
-            `
-        }
-        
     });
     userTable.innerHTML = html;
 
@@ -204,25 +160,8 @@ const setupGuides = (data, email) =>
 
 //Logout
 const logoutButton = document.querySelector('#logoutButton');
-
 logoutButton.onclick = function()
 {
-    db.collection('Admin').doc('currentAdmin').get().then((docSnapshot) => 
-    {
-        if (docSnapshot.exists) 
-        {
-            db.collection('Admin').doc("currentAdmin").delete().then(
-                function()
-                {
-                    auth.signOut();
-                    console.log("User signed out successfully");
-                }
-            )
-        }
-        else
-        {
-            auth.signOut();
-            console.log("User signed out successfully");
-        }
-  });
+    auth.signOut();
+    console.log("User signed out successfully");
 }
