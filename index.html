@@ -271,6 +271,10 @@
 	<script src="https://www.gstatic.com/firebasejs/8.2.0/firebase-auth.js"></script>
 	<script src="https://www.gstatic.com/firebasejs/8.2.0/firebase-firestore.js"></script>
 
+    <script>
+        //Need to make connection to MySQL here
+    </script>
+
 	<script>
 	// For Firebase JS SDK v7.20.0 and later, measurementId is optional
 	var firebaseConfig = {
@@ -286,9 +290,6 @@
 	firebase.initializeApp(firebaseConfig);
 	//make auth and firestore references
 	const auth = firebase.auth();
-	const db = firebase.firestore();
-	//update firestore settings
-	db.settings({timestampsInSnapshots: true});
 	</script>
     <script src = "auth.js"></script>
     <script src = "index.js"></script>

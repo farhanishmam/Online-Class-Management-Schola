@@ -3,15 +3,8 @@ const topNav = document.querySelector('#navContent');
 //getting Email of Logged in User
 
 //needs to be updated with MySQL queries
-auth.onAuthStateChanged(user => 
-{
-    var email = user.email;
-    db.collection('User').where(firebase.firestore.FieldPath.documentId(), '==', email).get().then(snapshot =>
-    {
-        setupGuides(snapshot.docs, email);
-    });
-    
-})
+
+setupGuides(snapshot.docs, email);
 
 //loads the user profile for students, faculties and CRs
 const setupGuides = (data, email) =>

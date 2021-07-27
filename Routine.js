@@ -1,12 +1,9 @@
 const routineTable = document.querySelector('#routine-table');
 const topNav = document.querySelector('#navContent');
 //Fetch Routine ID and display routine
-auth.onAuthStateChanged(user => 
-{
-    const email = user.email; 
-    
-    displayRoutine(1); 
-})
+
+//Display routine needs to be updated with mySQL function
+displayRoutine(1); 
 
 function displayRoutine(routineID)
 {
