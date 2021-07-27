@@ -51,10 +51,11 @@ const setupNav = (data) =>
         {
             navContent.innerHTML = 
             `
-                <a href = "User.html">Profile</a>
-                <a href="Routine.html">View Routine</a>
+                <a href = "UserProfile.html">Profile</a>
+                <a href = "Routine.html">View Routine</a>
                 <a href = "Notice.html">Notice</a>
                 <a href = "EvaluationSheet.html">Evaluation Sheet</a>
+                <a href = "ToDo.html">To Do List</a>
                 <a class="active" href="ChangePassword.html">Change Password</a> 
             `
         }
@@ -62,10 +63,11 @@ const setupNav = (data) =>
         {
             navContent.innerHTML = 
             `
-                <a href = "User.html">Profile</a>
-                <a href="Routine.html">View Routine</a>
+                <a href = "UserProfile.html">Profile</a>
+                <a href = "Routine.html">View Routine</a>
                 <a href = "Notice.html">Notice</a>
                 <a href = "EvaluationSheet.html">Evaluation Sheet</a>
+                <a href = "ToDo.html">To Do List</a>
                 <a class="active" href="ChangePassword.html">Change Password</a> 
             `
         }
