@@ -1,4 +1,22 @@
 const closeButtons = document.getElementsByClassName("delete");
+const navContent = document.querySelector("#navContent");
+
+var favoritemovie = sessionStorage.getItem("userEmail");
+console.log(favoritemovie);
+
+auth.onAuthStateChanged(user => 
+  {
+      var email = user.email;
+      //Change this to an sql query 
+      db.collection('User').where(firebase.firestore.FieldPath.documentId(), '==', email).get().then(snapshot =>
+      {
+          setupNav(snapshot.docs);
+      });
+    }
+);
+    
+
+
 for(i = 0; i<closeButtons.length; i++)
 {
     closeButtons[i].addEventListener("click", function() 
@@ -54,3 +72,43 @@ for(i = 0; i<addButtons.length; i++)
     })
 }
 
+
+const setupNav = (data) => 
+{
+    data.forEach(doc => 
+    {
+        const userType = doc.data().Type;
+        if(userType === 1)
+        {
+            navContent.innerHTML = 
+            `
+                <a class = "active">Profile</a>
+                <a href = "Notice.html">Notice</a>
+                <a href="Routine.html">Routine</a>
+                <a href = "EvaluationSheet.html">Evaluation Sheet</a>
+                <a href="ToDo.html">To-Do List</a> 
+            `
+        }
+        else if(userType === 2)
+        {
+            navContent.innerHTML = 
+            `
+                <a href = "User.html">Profile</a>
+                <a href="Routine.html">View Routine</a>
+                <a href = "Notice.html">Notice</a>
+                <a href = "EvaluationSheet.html">Evaluation Sheet</a>
+                <a class="active" href="ChangePassword.html">Change Password</a> 
+            `
+        }
+        else if(userType === 3)
+        {
+            navContent.innerHTML = 
+            `
+                <a href = "UserProfile.html">Profile</a>
+                <a href = "BookRoom.html">Book Room</a>
+                <a href = "BookingRecords.html">Booking Records</a>
+                <a cl                          ass = "active">Change Password</a> 
+            `
+        }
+    });
+};

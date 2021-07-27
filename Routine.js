@@ -1,9 +1,16 @@
 const routineTable = document.querySelector('#routine-table');
 const topNav = document.querySelector('#navContent');
+
+//var favoritemovie = "Shrek";
+//sessionStorage.setItem("favoriteMovie", favoritemovie);
+//var favoritemovie = sessionStorage.getItem("favoriteMovie");
+//console.log(favoritemovie);
+
 //Fetch Routine ID and display routine
 auth.onAuthStateChanged(user => 
 {
     const email = user.email; 
+    sessionStorage.setItem("userEmail", email);
     var docRefUser = db.collection("User").doc(email);
     docRefUser.get().then( function(docUser)
     {
@@ -13,9 +20,11 @@ auth.onAuthStateChanged(user =>
             if(docData.Type === 1)
             {
                 topNav.innerHTML = `
-                    <a href="UserProfile.html" >Profile</a>
-                    <a class="active">View Routine</a>
-                    <a href="ChangePassword.html">Change Password</a> 
+                    <a href = "UserProfile.html">Profile</a>
+                    <a href = "Notice.html">Notice</a>
+                    <a class = "active">Routine</a>
+                    <a href = "EvaluationSheet.html">Evaluation Sheet</a>
+                    <a href="ToDo.html">To-Do List</a>  
                 `
             }
             else if(docData.Type === 2)
@@ -137,6 +146,8 @@ function displayRoutine(routineID)
         routineTable.innerHTML = tableContent;
     });
 }
+
+
 
 //Logout
 const logoutButton = document.querySelector('#logoutButton');
