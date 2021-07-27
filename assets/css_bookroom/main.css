@@ -193,43 +193,49 @@ tbody tr:hover {
 }
 
 .column1 {
-  width: 120px;
-  padding-left: 40px;
+  width: 110px;
+  //padding-left: 40px;
   text-align: center;
 }
 
 .column2 {
-  width: 100px;
-  padding-left: 20px;
+  width: 110px;
+  //padding-left: 20px;
   text-align: center;
 }
 
 .column3 {
-  width: 100px;
+  width: 110px;
   text-align: center;
 }
 
 .column4 {
   width: 110px;
-  padding-left: 20px;
+  //padding-left: 20px;
+  text-align: center;
 }
 
 .column5 {
   width: 110px;
-  padding-left: 20px;
+  //padding-left: 20px;
+  text-align: center;
 }
 
 .column6 {
   width: 110px;
+  text-align: center;
 }
 .column7 {
   width: 110px;
+  text-align: center;
 }
 .column8 {
   width: 110px;
+  text-align: center;
 }
 .column9 {
-  width: 100px;
+  width: 110px;
+  text-align: center;
 }
 
 
@@ -420,3 +426,5 @@ tbody tr:hover {
   padding-right: 20px;
   text-align: center;
 }
+
+
