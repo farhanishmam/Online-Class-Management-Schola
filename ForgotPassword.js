@@ -9,7 +9,7 @@ submitForm.addEventListener('submit', (e) =>
     {
         auth.sendPasswordResetEmail(email);     
         message.innerHTML = `<p style = "color: green">*Password Reset Email Sent</p>`;   
-        setTimeout("window.location.href = 'index.html';", 1.25 * 1000);
+        setTimeout("window.location.href = 'index.php';", 1.25 * 1000);
     }).catch
     (
         () =>

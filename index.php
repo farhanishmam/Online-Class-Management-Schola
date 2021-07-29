@@ -57,7 +57,7 @@
                     </div>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav nav-dropdown navbar-nav-top-padding" data-app-modern-menu="true"><li class="nav-item"><a class="nav-link link text-white display-4" href="index.html#header11-r">ABOUT SCHOLA</a></li><li class="nav-item"><a class="nav-link link text-white display-4" href="index.html#features1-m">FEATURES</a></li><li class="nav-item"><a class="nav-link link text-white display-4" href="index.html#team1-n">TEAM</a></li></ul>
+                    <ul class="navbar-nav nav-dropdown navbar-nav-top-padding" data-app-modern-menu="true"><li class="nav-item"><a class="nav-link link text-white display-4" href="index.php#header11-r">ABOUT SCHOLA</a></li><li class="nav-item"><a class="nav-link link text-white display-4" href="index.php#features1-m">FEATURES</a></li><li class="nav-item"><a class="nav-link link text-white display-4" href="index.php#team1-n">TEAM</a></li></ul>
                     
                     <div class="navbar-buttons mbr-section-btn" id="myBtn"><a class="btn btn-black display-4" href="#">
                         LOGIN</a></div>
@@ -75,7 +75,7 @@
                   </button>
                 </div>
                 <div class="wrap-login100">
-                    <form id = "login-form" class="login100-form validate-form" action="../Table/UserProfileStudent.html" method="get">
+                    <form id = "login-form" class="login100-form validate-form" action="../Table/UserProfileStudent.php" method="get">
                         <span class="login100-form-title">
                             User Login
                         </span>

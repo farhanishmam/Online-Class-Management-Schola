@@ -27,5 +27,5 @@ loginForm.addEventListener('submit', (e) =>
 const setupGuides = (email) =>
 {
     sessionStorage.setItem("femail", email);
-    window.location.href = "UserProfile.html";
+    window.location.href = "UserProfile.php";
 }

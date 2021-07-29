@@ -51,11 +51,11 @@ const setupNav = (data) =>
         {
             navContent.innerHTML = 
             `
-                <a href = "UserProfile.html">Profile</a>
-                <a href = "Routine.html">View Routine</a>
-                <a href = "Notice.html">Notice</a>
-                <a href = "EvaluationSheet.html">Evaluation Sheet</a>
-                <a href = "ToDo.html">To Do List</a>
+                <a href = "UserProfile.php">Profile</a>
+                <a href = "Routine.php">View Routine</a>
+                <a href = "Notice.php">Notice</a>
+                <a href = "EvaluationSheet.php">Evaluation Sheet</a>
+                <a href = "ToDo.php">To Do List</a>
                 <a class="active" href="ChangePassword.html">Change Password</a> 
             `
         }
@@ -63,11 +63,11 @@ const setupNav = (data) =>
         {
             navContent.innerHTML = 
             `
-                <a href = "UserProfile.html">Profile</a>
-                <a href = "Routine.html">View Routine</a>
-                <a href = "Notice.html">Notice</a>
-                <a href = "EvaluationSheet.html">Evaluation Sheet</a>
-                <a href = "ToDo.html">To Do List</a>
+                <a href = "UserProfile.php">Profile</a>
+                <a href = "Routine.php">View Routine</a>
+                <a href = "Notice.php">Notice</a>
+                <a href = "EvaluationSheet.php">Evaluation Sheet</a>
+                <a href = "ToDo.php">To Do List</a>
                 <a class="active" href="ChangePassword.html">Change Password</a> 
             `
         }
@@ -75,9 +75,9 @@ const setupNav = (data) =>
         {
             navContent.innerHTML = 
             `
-                <a href = "UserProfile.html">Profile</a>
-                <a href = "BookRoom.html">Book Room</a>
-                <a href = "BookingRecords.html">Booking Records</a>
+                <a href = "UserProfile.php">Profile</a>
+                <a href = "BookRoom.php">Book Room</a>
+                <a href = "BookingRecords.php">Booking Records</a>
                 <a class = "active">Change Password</a> 
             `
         }
