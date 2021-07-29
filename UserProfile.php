@@ -1,3 +1,6 @@
+<?php
+	include 'conn.php';
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -47,7 +50,20 @@
 						<tbody>
 							<tr>
 								<td class="column1">Name:</td>
-								<td class="column2">Adrita</td>
+								<td class="column2">
+									<?php
+										$sql = "SELECT st_name FROM student";
+										$result = $conn->query($sql);
+										
+										if ($result->num_rows > 0) {
+											while($row = $result->fetch_assoc()) {
+											echo $row["st_name"];
+											}
+										} else {
+										  echo "0 results";
+										}
+									?>
+								</td>
 							</tr>
 							<tr>
 								<td class="column1">Student ID:</td>

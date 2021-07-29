@@ -1,3 +1,8 @@
+
+<?php
+    include 'conn.php';
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
