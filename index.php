@@ -1,7 +1,27 @@
-
 <?php
-    include 'conn.php';
+    require __DIR__.'/vendor/autoload.php';
+    $error="";
+    use Kreait\Firebase\Factory;
+    $firebase = (new Factory)->withServiceAccount('classroom-management-sys-62bac-firebase-adminsdk-2pync-bbfca3476e.json');
+    $auth = $firebase->createAuth();
+    if(isset($_POST['emailLogin'])){
+        $email=$_POST['emailLogin'];
+        $password=$_POST['passwordLogin'];
+        try {
+            $signInResult = $auth->signInWithEmailAndPassword($email, $password);
+            if($signInResult){
+                session_start();
+                $_SESSION['Email'] = $email;
+                $error = "";
+                header("Location:UserProfile.php");
+            }
+        } catch (Exception $e) {
+            $error = "*Invalid Login Credentials";
+        }
+    }
 ?>
+
+
 
 <!DOCTYPE html>
 <html>
@@ -75,13 +95,13 @@
                   </button>
                 </div>
                 <div class="wrap-login100">
-                    <form id = "login-form" class="login100-form validate-form" action="../Table/UserProfileStudent.php" method="get">
+                    <form method="post" enctype="multipart/form-data">
                         <span class="login100-form-title">
                             User Login
                         </span>
                         
                         <div class="wrap-input100 validate-input" >
-                            <input id = "login-email" class="input100" type="text" name="email" placeholder="Email">
+                            <input id = "login-email" class="input100" type="email" name="emailLogin" placeholder="Email" required>
                             <span class="focus-input100"></span>
                             <span class="symbol-input100">
                                 <i class="fa fa-user" aria-hidden="true"></i>
@@ -89,19 +109,16 @@
                         </div>
     
                         <div class="wrap-input100 validate-input">
-                            <input id = "login-password" class="input100" type="password" name="password" placeholder="Password">
+                            <input id = "login-password" class="input100" type="password" name="passwordLogin" placeholder="Password" required>
                             <span class="focus-input100"></span>
                             <span class="symbol-input100">
                                 <i class="fa fa-lock" aria-hidden="true"></i>
                             </span>
                         </div>
                         <div id = "failMessage">
+                            <p class="error" style="color:red"><?php echo $error; ?></p>
                         </div>
-                        <div class="container-login100-form-btn">
-                            <button class="login100-form-btn">
-                                Login
-                            </button>
-                        </div>
+                        <button type="submit" name="loginbtn" class="login100-form-btn">Login</button>
                         <div class="text-center p-t-12">
                             <a class="txt2" href="ForgotPassword.html">
                                 Forgot Password?
@@ -272,33 +289,8 @@
     <script src="assets/viewportchecker/jquery.viewportchecker.js"></script>
     <script src="assets/theme/js/script.js"></script> 
     
-    <script src="https://www.gstatic.com/firebasejs/8.2.0/firebase-app.js"></script>
-	<script src="https://www.gstatic.com/firebasejs/8.2.0/firebase-auth.js"></script>
-	<script src="https://www.gstatic.com/firebasejs/8.2.0/firebase-firestore.js"></script>
-
-    <script>
-        //Need to make connection to MySQL here
-    </script>
-
-	<script>
-	// For Firebase JS SDK v7.20.0 and later, measurementId is optional
-	var firebaseConfig = {
-		apiKey: "AIzaSyC779fYGX4FppGMWHRa7adUBOVUFHVmpMc",
-		authDomain: "classroom-management-sys-62bac.firebaseapp.com",
-		databaseURL: "https://classroom-management-sys-62bac.firebaseio.com",
-		projectId: "classroom-management-sys-62bac",
-		storageBucket: "classroom-management-sys-62bac.appspot.com",
-		appId: "1:629847542385:web:45cc8a1e459b99de7669d0",
-		measurementId: "G-5Q3ZRGNXW8"
-	};
-	// Initialize Firebase
-	firebase.initializeApp(firebaseConfig);
-	//make auth and firestore references
-	const auth = firebase.auth();
-	</script>
-    <script src = "auth.js"></script>
     <script src = "index.js"></script>
-
+    
     <div id="scrollToTop" class="scrollToTop mbr-arrow-up"><a style="text-align: center;"><i class="mbr-arrow-up-icon mbr-arrow-up-icon-cm cm-icon cm-icon-smallarrow-up"></i></a></div>
     <input name="animation" type="hidden">
 </body>

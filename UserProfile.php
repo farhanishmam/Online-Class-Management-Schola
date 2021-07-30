@@ -1,5 +1,6 @@
 <?php
-	include 'conn.php';
+	session_start();
+	include 'sql-conn.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -27,13 +28,13 @@
 
       <div class="topnav" id="mytopnav">
 	  	<div id = "navContent">
-			<a class="active" href = "UserProfile.html">Profile</a>
-			<a href = "Routine.html">Routine</a>
-            <a href = "Notice.html">Notice</a>
-            <a href = "EvaluationSheet.html">Evaluation Sheet</a>
-            <a href = "ToDo.html">To Do List</a>
+			<a class="active" href = "UserProfile.php">Profile</a>
+			<a href = "Routine.php">Routine</a>
+            <a href = "Notice.php">Notice</a>
+            <a href = "EvaluationSheet.php">Evaluation Sheet</a>
+            <a href = "ToDo.php">To Do List</a>
 		</div>
-		<button style="float: right;"id = "logoutButton"><a href="index.html">Log Out</a></button>  
+		<button style="float: right;"id = "logoutButton"><a href="index.php">Log Out</a></button>  
       </div>  
 </head>
 <body>
@@ -49,29 +50,25 @@
 						</thead>
 						<tbody>
 							<tr>
+							<?php
+								$email = $_SESSION['Email'];
+								$result = $conn->query("SELECT st_name,st_id FROM student where email = '$email' ");
+								$row = $result->fetch_assoc();
+							?>
 								<td class="column1">Name:</td>
 								<td class="column2">
-									<?php
-										$sql = "SELECT st_name FROM student";
-										$result = $conn->query($sql);
-										
-										if ($result->num_rows > 0) {
-											while($row = $result->fetch_assoc()) {
-											echo $row["st_name"];
-											}
-										} else {
-										  echo "0 results";
-										}
-									?>
+									<?php echo $row['st_name']; ?>
 								</td>
 							</tr>
 							<tr>
 								<td class="column1">Student ID:</td>
-								<td class="column2">180041118</td>
+								<td class="column2">
+									<?php echo $row['st_id']; ?>
+								</td>
 							</tr>
 							<tr>
 								<td class="column1">Department:</td>
-								<td class="column2">CSE</td>
+								<td class="column2"><?php echo 'CSE'; ?></td>
 							</tr>
 						</tbody>
 					</table>

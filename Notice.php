@@ -23,13 +23,13 @@
       <div class="topnav" id="mytopnav">
 	  	<div id = "navContent">
 			  <!-- NavBar will be loaded dynamically -->
-			<a href = "UserProfile.html">Profile</a>
-			<a href = "Routine.html">Routine</a>
-            <a class = "active" href = "Notice.html">Notice</a>
-            <a href = "EvaluationSheet.html">Evaluation Sheet</a>
-            <a href = "ToDo.html">To Do List</a>
+			<a href = "UserProfile.php">Profile</a>
+			<a href = "Routine.php">Routine</a>
+            <a class = "active" href = "Notice.php">Notice</a>
+            <a href = "EvaluationSheet.php">Evaluation Sheet</a>
+            <a href = "ToDo.php">To Do List</a>
 		</div>
-		<button style="float: right;" id = "logoutButton"><a href="index.html">Log Out</a></button>  
+		<button style="float: right;" id = "logoutButton"><a href="index.php">Log Out</a></button>  
       </div>  
 </head>
 <body>
