@@ -39,7 +39,7 @@
 					<table>
 						<thead>
 							<tr class="table100-head">
-								<th style="width:15%" class="column1" >Date</th>
+								<th style="width:20%" class="column1" >Date</th>
 								<th style="width:75%" class="column2">Notice</th>
 								<th style="width:5%" class="column3"></th>
 							</tr>
@@ -72,7 +72,47 @@
 								</tr>
 						</tbody>
 					</table>
+					<button style="width:16%" id = "addNoticeBtn" type="button" class="btn btn-success">Add Notice</button>
+
+					<div id="myModal" class="modal" tabindex="-1" role="dialog">
+						<div class="modal-dialog" role="document">
+							<div class="modal-content">
+								<div class="modal-header">
+									<h5 class="modal-title"></h5>
+									<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+										<span aria-hidden="true">&times;</span>
+									</button>
+								</div>
+								<div class="modal-header">
+									<div class="wrap-login100">
+										<form id = "login-form" class="login100-form validate-form" action="Notice-CR.html">
+											<span class="login100-form-title">
+												Add Notice
+											</span>
+
+											<div class="wrap-input100 validate-input" >
+												<input id = "Date" class="input100" type="text" name="Date" placeholder="Date">
+												<span class="focus-input100"></span>
+											</div>
+
+											<div class="wrap-input100 validate-input">
+												<input id = "New_notice" class="input100" type="text" name="New_notice" placeholder="Content of the notice">
+												<span class="focus-input100"></span>
+											</div>
+											<div id = "failMessage">
+											</div>
+											<div class="container-login100-form-btn">
+												<button id="submitbtn" class="login100-form-btn">
+													Submit 
+												</button>
+											</div>
+										</form>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
 		</div>
 	</div>
-	<script src = "notice.js"></script>
+	<script src = "Notice-CR.js"></script>
 </body>
