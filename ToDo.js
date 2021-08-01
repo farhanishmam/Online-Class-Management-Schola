@@ -35,22 +35,3 @@ window.onclick = function(event) {
   }
 }
 
-var table = document.getElementById("ToDoTable");
-const addButtons = document.getElementsByClassName("login100-form-btn");
-for(i = 0; i<addButtons.length; i++)
-{
-    addButtons[i].addEventListener("click", function() 
-    {
-       var row = table.insertRow(0);
-       var cell1 = row.insertCell(0);
-       var cell2 = row.insertCell(1);
-
-       var task = document.getElementById("New_Task").value;
-       var deadline = document.getElementById("Deadline").value;
-
-       cell1.innerHTML = 'dscv';
-       cell2.innerHTML = 'dcs';
-        
-    })
-}
-
