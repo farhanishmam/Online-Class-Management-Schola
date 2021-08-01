@@ -15,18 +15,17 @@
                 include 'sql-conn.php';
                 $error = "";
                 $result = $conn->query("SELECT F_ID FROM faculty where F_EMAIL = '$email' ");
-                if($result) {
+                if($result->fetch_assoc()) {
                     header("Location:FacultyProfile.php");
                 }
                 else {
                     $result = $conn->query("SELECT CR FROM student where EMAIL = '$email' ");
                     $row = $result->fetch_assoc();
                     if($row['CR'])
-                        header("Location:StudentProfile.php");
-                    else
                         header("Location:CRProfile.php");
+                    else
+                        header("Location:StudentProfile.php");
                 }
-                header("Location:UserProfile.php");
             }
         } catch (Exception $e) {
             $error = "*Invalid Login Credentials";
