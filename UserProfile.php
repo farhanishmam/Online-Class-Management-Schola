@@ -2,12 +2,12 @@
 	session_start();
 	include 'sql-conn.php';
 	$email = $_SESSION['Email'];
-	$result = $conn->query("SELECT F_NAME,F_ID FROM FACULTY where F_EMAIL = '$email' ");
+	$result = $conn->query("SELECT F_NAME,F_ID, F_EMAIL, D_NAME FROM FACULTY_PROFILE where F_EMAIL = '$email' ");
 	$row = $result->fetch_assoc();
 	if($row) 
 		$_SESSION['Type'] = 3;
 	else {
-		$result = $conn->query("SELECT ST_NAME,ST_ID,CR FROM STUDENT where EMAIL = '$email' ");
+		$result = $conn->query("SELECT ST_ID, ST_NAME, EMAIL, DoB, SEC, GROUP_LAB, D_NAME, P_NAME, SEMESTER, CR FROM STUDENT_PROFILE where EMAIL = '$email' ");
 		$row = $result->fetch_assoc();
 		if($row['CR'])
 			$_SESSION['Type'] = 2;
@@ -41,11 +41,19 @@
 
       <div class="topnav" id="mytopnav">
 	  	<div id = "navContent">
-			<a class="active" href = "StudentProfile.php">Profile</a>
-			<a href = "Routine.php">Routine</a>
-            <a href = "Notice.php">Notice</a>
-            <a href = "EvaluationSheet.php">Evaluation Sheet</a>
-            <a href = "ToDo.php">To Do List</a>
+			<a class="active" href = "UserProfile.php">Profile</a>
+			<?php
+				if($_SESSION['Type'] == 3){
+					echo '<a href = "Notice.php">Notice</a>
+					<a href = "EvaluationSheet.php">Evaluation Sheet</a>';
+				}
+				else {
+					echo '<a href = "Routine.php">Routine</a>
+					<a href = "Notice.php">Notice</a>
+					<a href = "EvaluationSheet.php">Evaluation Sheet</a>
+					<a href = "ToDo.php">To Do List</a>';
+				}
+			?>
 		</div>
 		<button style="float: right;"id = "logoutButton"><a href="index.php">Log Out</a></button>  
       </div>  
@@ -74,8 +82,12 @@
 										<td class="column2"> '.$row['F_ID'].' </td>
 									</tr>
 									<tr>
+										<td class="column1">Faculty Email:</td>
+										<td class="column2"> '.$row['F_EMAIL'].' </td>
+									</tr>
+									<tr>
 										<td class="column1">Department:</td>
-										<td class="column2"> CSE </td>
+										<td class="column2"> '.$row['D_NAME'].'  </td>
 									</tr>';
 								}
 								else {
@@ -89,8 +101,32 @@
 										<td class="column2"> '.$row['ST_ID'].' </td>
 									</tr>
 									<tr>
+										<td class="column1">Email:</td>
+										<td class="column2"> '.$row['ST_ID'].' </td>
+									</tr>
+									<tr>
+										<td class="column1">Date of Birth:</td>
+										<td class="column2"> '.$row['DoB'].' </td>
+									</tr>
+									<tr>
 										<td class="column1">Department:</td>
-										<td class="column2"> CSE </td>
+										<td class="column2"> '.$row['D_NAME'].' </td>
+									</tr>
+									<tr>
+										<td class="column1">Program:</td>
+										<td class="column2"> '.$row['P_NAME'].' </td>
+									</tr>
+									<tr>
+										<td class="column1">Section:</td>
+										<td class="column2"> '.$row['SEC'].' </td>
+									</tr>
+									<tr>
+										<td class="column1">Lab Group:</td>
+										<td class="column2"> '.$row['GROUP_LAB'].' </td>
+									</tr>
+									<tr>
+										<td class="column1">Semester:</td>
+										<td class="column2"> '.$row['SEMESTER'].' </td>
 									</tr>';
 								}
 							?>
