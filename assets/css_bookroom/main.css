@@ -497,3 +497,7 @@ tbody tr:hover {
   transform: rotate(45deg);
 }
 
+/* Modal Content */
+.modal {
+  background-color: rgba(0,0,0, 0.5);
+}
