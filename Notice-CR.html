@@ -4,114 +4,120 @@
 	<title>Notices</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-<!--===============================================================================================-->	
+	<!--===============================================================================================-->	
 	<link rel="icon" type="image/png" href="images/icons/favicon.ico"/>
 	<link rel="stylesheet" type="text/css" href="fonts/font-awesome-4.7.0/css/font-awesome.min.css">
-<!--===============================================================================================-->
+	<!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="assets/bootstrap/css/bootstrap.min.css">
-<!--===============================================================================================-->
+	<!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="node_modules/animate.css/animate.min.css">
-<!--===============================================================================================-->
+	<!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="node_modules/select2/dist/css/select2.min.css">
-<!--===============================================================================================-->
+	<!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="node_modules/perfect-scrollbar/css/perfect-scrollbar.css">
-<!--===============================================================================================-->
+	<!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="assets/css_bookroom/main.css">
 	<link rel="stylesheet" type="text/css" href="assets/css_otherform/main.css">
 	<link rel="stylesheet" type="text/css" href="assets/css_bookroom/util.css">
-<!--===============================================================================================-->
-      <div class="topnav" id="mytopnav">
-	  	<div id = "navContent">
-			  <!-- NavBar will be loaded dynamically -->
+	<!--===============================================================================================-->
+	<div class="topnav" id="mytopnav">
+		<div id = "navContent">
+			<!-- NavBar will be loaded dynamically -->
 			<a href = "UserProfile.html">Profile</a>
 			<a href = "Routine.html">Routine</a>
-            <a class = "active" href = "Notice.html">Notice</a>
-            <a href = "EvaluationSheet.html">Evaluation Sheet</a>
-            <a href = "ToDo.html">To Do List</a>
+			<a class = "active" href = "Notice.html">Notice</a>
+			<a href = "EvaluationSheet.html">Evaluation Sheet</a>
+			<a href = "ToDo.html">To Do List</a>
 		</div>
 		<button style="float: right;" id = "logoutButton"><a href="index.html">Log Out</a></button>  
-      </div>  
+	</div>  
 </head>
 <body>
 	<div class="limiter">
 		<div id = "containerTable" class="container-table100">
-             <!-- Contents of the table will be dynamically loaded -->
-					<table>
-						<thead>
-							<tr class="table100-head">
-								<th style="width:20%" class="column1" >Date</th>
-								<th style="width:75%" class="column2">Notice</th>
-								<th style="width:5%" class="column3"></th>
-							</tr>
-						</thead>
-						<tbody>
-								<tr>
-									<td class="column1">20/7/2021</td>
-									<td class="column2">Schola Project work</td>
-									<td class="column3"><span class="delete">X</span></td>
-								</tr>
-								<tr>
-									<td class="column1">21/7/2021</td>
-									<td class="column2">Eid Mubarak</td>
-									<td class="column3"><span class="delete">X</span></td>
-								</tr>
-								<tr>
-									<td class="column1">22/7/2021</td>
-									<td class="column2">etywkvfcjebvukb3rvivbehjrhkhjvvbbfcdebbuhedv</td>
-									<td class="column3"><span class="delete">X</span></td>
-								</tr>
-								<tr>
-									<td class="column1">23/7/2021</td>
-									<td class="column2"></td>
-									<td class="column3"><span class="delete">X</span></td>
-								</tr>
-								<tr>
-									<td class="column1">24/7/2021</td>
-									<td class="column2"></td>
-									<td class="column3"><span class="delete">X</span></td>
-								</tr>
-						</tbody>
-					</table>
-					<button style="width:16%; margin-left: 75%; margin-top:-15%" id = "addNoticeBtn" type="button" class="btn btn-success">Add Notice</button>
+			<!-- Contents of the table will be dynamically loaded -->
+			<table>
+				<thead>
+					<tr class="table100-head">
+						<th style="width:20%" class="column1" >Date</th>
+						<th style="width:75%" class="column2">Notice</th>
+						<th style="width:5%" class="column3"></th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td class="column1">20/7/2021</td>
+						<td class="column2">Schola Project work</td>
+						<td class="column3"><span class="delete">X</span></td>
+					</tr>
+					<tr>
+						<td class="column1">21/7/2021</td>
+						<td class="column2">Eid Mubarak</td>
+						<td class="column3"><span class="delete">X</span></td>
+					</tr>
+					<tr>
+						<td class="column1">22/7/2021</td>
+						<td class="column2">etywkvfcjebvukb3rvivbehjrhkhjvvbbfcdebbuhedv</td>
+						<td class="column3"><span class="delete">X</span></td>
+					</tr>
+					<tr>
+						<td class="column1">23/7/2021</td>
+						<td class="column2"></td>
+						<td class="column3"><span class="delete">X</span></td>
+					</tr>
+					<tr>
+						<td class="column1">24/7/2021</td>
+						<td class="column2"></td>
+						<td class="column3"><span class="delete">X</span></td>
+					</tr>
+				</tbody>
+			</table>
+			<button style="width:16%; margin-left: 75%; margin-top:-15%" id = "addNoticeBtn" type="button" class="btn btn-success">Add Notice</button>
 
-					<div id="myModal" class="modal" tabindex="-1" role="dialog">
-						<div class="modal-dialog" role="document">
-							<div class="modal-content">
-								<div class="modal-header">
-									<h5 class="modal-title"></h5>
-									<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-										<span aria-hidden="true">&times;</span>
-									</button>
-								</div>
-								<div class="modal-header">
-									<div class="wrap-login100">
-										<form id = "login-form" class="login100-form validate-form" action="Notice-CR.html">
-											<span class="login100-form-title">
-												Add Notice
-											</span>
+			<div id="myModal" class="modal" tabindex="-1" role="dialog">
+				<div class="modal-dialog" role="document">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h5 class="modal-title"></h5>
+							<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+								<span aria-hidden="true">&times;</span>
+							</button>
+						</div>
+						<div class="modal-header">
+							<div class="wrap-login100">
+								<form id = "login-form" class="login100-form validate-form" action="Notice-CR.html">
+									<span class="login100-form-title">
+										Add Notice
+									</span>
 
-											<div class="wrap-input100 validate-input" >
-												<input id = "Date" class="input100" type="text" name="Date" placeholder="Date">
-												<span class="focus-input100"></span>
-											</div>
-
-											<div class="wrap-input100 validate-input">
-												<input id = "New_notice" class="input100" type="text" name="New_notice" placeholder="Content of the notice">
-												<span class="focus-input100"></span>
-											</div>
-											<div id = "failMessage">
-											</div>
-											<div class="container-login100-form-btn">
-												<button id="submitbtn" class="login100-form-btn">
-													Submit 
-												</button>
-											</div>
-										</form>
+									<div class="wrap-input100 validate-input" >
+										<input id = "Date" class="input100" type="text" name="Date" placeholder="Date">
+										<span class="focus-input100"></span>
+										<span class="symbol-input100">
+											<i class="fa fa-calendar" aria-hidden="true"></i>
+										</span>
 									</div>
-								</div>
+
+									<div class="wrap-input100 validate-input">
+										<input id = "New_notice" class="input100" type="text" name="New_notice" placeholder="Content of the notice">
+										<span class="focus-input100"></span>
+										<span class="symbol-input100">
+                            	<i class="fa fa-bell" aria-hidden="true"></i>
+                            </span>
+									</div>
+									<div id = "failMessage">
+									</div>
+									<div class="container-login100-form-btn">
+										<button id="submitbtn" class="login100-form-btn">
+											Submit 
+										</button>
+									</div>
+								</form>
 							</div>
 						</div>
 					</div>
+				</div>
+			</div>
 		</div>
 	</div>
 	<script src = "Notice-CR.js"></script>
