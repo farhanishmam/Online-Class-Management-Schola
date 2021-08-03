@@ -4,8 +4,10 @@
 	$email = $_SESSION['Email'];
 	$result = $conn->query("SELECT F_NAME,F_ID, F_EMAIL, D_NAME FROM FACULTY_PROFILE where F_EMAIL = '$email' ");
 	$row = $result->fetch_assoc();
-	if($row) 
+	if($row) {
 		$_SESSION['Type'] = 3;
+		$_SESSION['ID'] = $row['F_ID'];
+	}
 	else {
 		$result = $conn->query("SELECT ST_ID, ST_NAME, EMAIL, DoB, SEC, GROUP_LAB, D_NAME, P_NAME, SEMESTER, CR FROM STUDENT_PROFILE where EMAIL = '$email' ");
 		$row = $result->fetch_assoc();
@@ -13,6 +15,7 @@
 			$_SESSION['Type'] = 2;
 		else
 			$_SESSION['Type'] = 1;
+		$_SESSION['ID'] = $row['ST_ID'];
 	}
 ?>
 <!DOCTYPE html>

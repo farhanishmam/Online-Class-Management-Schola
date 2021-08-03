@@ -78,7 +78,7 @@
 				<table data-vertable="ver1">
 					<thead>
 						<tr class="row100 head">
-							<th class="column100 column1" data-column="column1"></th>
+							<th style="text-align:center" class="column100 column1" data-column="column1"></th>
 							<th style="text-align:center" class="column100 column3" data-column="column2">08:30 - 09:45</th>
 							<th style="text-align:center" class="column100 column4" data-column="column3">10:00 - 11:15</th>
 							<th style="text-align:center" class="column100 column5" data-column="column4">11:30 - 12:45</th>
@@ -91,34 +91,34 @@
 						<?php
 						echo '<tbody>
 							<tr class="row100">
-								<td class="column100 column1" data-column="column1">Monday</td>';
+								<td style="text-align:center" class="column100 column1" data-column="column1">Monday</td>';
 								$result=displayRoutine($j, $result);
 								echo
 							'</tr>
 			
 							<tr class="row100">
-								<td class="column100 column1" data-column="column1">Tuesday</td>';
+								<td style="text-align:center" class="column100 column1" data-column="column1">Tuesday</td>';
 								$j++;
 								$result=displayRoutine($j, $result);
 								echo
 							'</tr>
 			
 							<tr class="row100">
-								<td class="column100 column1" data-column="column1">Wednesday</td>';
+								<td style="text-align:center" class="column100 column1" data-column="column1">Wednesday</td>';
 								$j++;
 								$result=displayRoutine($j, $result);
 								echo
 							'</tr>
 			
 							<tr class="row100">
-								<td class="column100 column1" data-column="column1">Thursday</td>';
+								<td style="text-align:center" class="column100 column1" data-column="column1">Thursday</td>';
 								$j++;
 								$result=displayRoutine($j, $result);
 								echo
 							'</tr>
 			
 							<tr class="row100">
-								<td class="column100 column1" data-column="column1">Friday</td>';
+								<td style="text-align:center" class="column100 column1" data-column="column1">Friday</td>';
 								$j++;
 								$result=displayRoutine($j, $result);
 								echo

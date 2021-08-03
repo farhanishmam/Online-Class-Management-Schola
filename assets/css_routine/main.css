@@ -136,12 +136,12 @@ th, td {
 
 .column100 {
   width: 130px;
-  padding-left: 25px;
+  padding-left: 0px;
 }
 
 .column100.column1 {
-  width: 265px;
-  padding-left: 42px;
+  width: 130px;
+  padding-left: 0px;
 }
 
 .row100.head th {
@@ -173,7 +173,15 @@ th, td {
 
   background-color: #36304a;
 }
-
+table {
+  border-spacing: 1;
+  border-collapse: collapse;
+  border-radius: 10px;
+  overflow: hidden;
+  width: 100%;
+  margin: 0 auto;
+  position: relative;
+}
 .table100.ver1 .row100:hover {
   background-color: #f2f2f2;
 }
