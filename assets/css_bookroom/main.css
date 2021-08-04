@@ -194,13 +194,13 @@ tbody tr:hover {
 
 .column1 {
   width: 110px;
-  //padding-left: 40px;
+  /* padding-left: 40px; */
   text-align: center;
 }
 
 .column2 {
   width: 110px;
-  //padding-left: 20px;
+  /* padding-left: 20px; */
   text-align: center;
 }
 
@@ -211,13 +211,13 @@ tbody tr:hover {
 
 .column4 {
   width: 110px;
-  //padding-left: 20px;
+  /* padding-left: 20px; */
   text-align: center;
 }
 
 .column5 {
   width: 110px;
-  //padding-left: 20px;
+  /* padding-left: 20px; */
   text-align: center;
 }
 
@@ -427,7 +427,7 @@ tbody tr:hover {
   text-align: center;
 }
 
-//checkbox
+/* checkbox */
 .container {
   display: block;
   position: relative;

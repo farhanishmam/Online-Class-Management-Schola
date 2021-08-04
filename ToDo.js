@@ -1,14 +1,3 @@
-const closeButtons = document.getElementsByClassName("delete");
-for(i = 0; i<closeButtons.length; i++)
-{
-    closeButtons[i].addEventListener("click", function() 
-    {
-        this.parentElement.parentElement.style.display = 'none';
-        
-    })
-}
-
-
 // Get the modal
 var modal = document.getElementById("myModal");
 

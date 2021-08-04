@@ -1,3 +1,17 @@
+<?php
+	session_start();
+	include 'sql-conn.php';
+	$id = $_SESSION['ID'];
+	$result = $conn->query("SELECT DATE_FORMAT(TD_DATE,'%d/%m/%Y') AS TD_DATE, TD_TEXT, DONE_FLAG, TD_ID FROM TO_DO WHERE STUDENT_ID = '$id' ORDER BY TD_DATE ");
+	if(isset($_POST['addtaskBtn'])){
+        $text=$_POST['New_task'];
+        $deadline=$_POST['Deadline'];
+		$addTask = $conn->query("INSERT INTO TO_DO (STUDENT_ID,TD_DATE,DONE_FLAG,TD_TEXT) VALUES ('".$id."', STR_TO_DATE('".$deadline."','%d/%m/%Y'),FALSE,'".$text."')");
+		header("location:ToDo.php");
+    }
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -47,42 +61,27 @@
 							</tr>
 						</thead>
 						<tbody>
+						<?php while ($row = $result->fetch_assoc()){ ?>
 								<tr>
-									<td class="column1"><label class="container" style="margin-bottom: 20px"><input type="checkbox">
-														  <span class="checkmark"></span>
-														</label>
+									<td class="column1">
+										<label class="container" style="margin-bottom: 20px; margin-left: -85px">
+										<a href="ToDoCheckBox.php?id=<?php echo $row['TD_ID']?>">
+										<input type="checkbox" 
+										<?php echo ($row['DONE_FLAG'] ? 'checked' : ''); ?> >
+										<span class="checkmark"></span></a>
+										</label>
 									</td>
-									<td class="column2">Schola work</td>
-								    <td class="column3">20/7/2021</td>
-								    <td class="column4"><span class="delete">X</span></td>
+									<td class="column2"> <?php echo $row['TD_TEXT']; ?></td>
+									<td class="column3"> <?php echo $row['TD_DATE']; ?></td>
+									<td class="column4"><a href="ToDoDelete.php?id=
+									<?php 
+										echo $row['TD_ID'];
+									?>" class="delete">X</a></td>
 								</tr>
-								<tr>
-									<td class="column1"><label class="container" style="margin-bottom: 20px"><input type="checkbox">
-														  <span class="checkmark"></span>
-														</label></td>
-									<td class="column2">Schola work</td>
-								    <td class="column3">20/7/2021</td>
-								    <td class="column4"><span class="delete">X</span></td>
-								</tr>
-								<tr>
-									<td class="column1"><label class="container" style="margin-bottom: 20px"><input type="checkbox">
-														  <span class="checkmark"></span>
-														</label></td>
-									<td class="column2">Schola work</td>
-								    <td class="column3">20/7/2021</td>
-								    <td class="column4"><span class="delete">X</span></td>
-								</tr>
-								<tr>
-									<td class="column1"><label class="container" style="margin-bottom: 20px"><input type="checkbox">
-														  <span class="checkmark"></span>
-														</label></td>
-									<td class="column2">Schola work</td>
-								    <td class="column3">20/7/2021</td>
-								    <td class="column4"><span class="delete">X</span></td>
-								</tr>
+						<?php } ?>
 						</tbody>
 					</table>	
-                <button style="width:16%" id = "addTaskButton" type="button" class="btn btn-success">Add Task</button>
+					<button style="width:16%; margin-left: 65%; margin-top:-15%" id = "addTaskButton" type="button" class="btn btn-success">Add Task</button>
 
           <div id="myModal" class="modal" tabindex="-1" role="dialog">
             <div class="modal-dialog" role="document">
@@ -95,7 +94,7 @@
                 </div>
                 <div class="modal-header">
                 <div class="wrap-login100">
-                    <form id = "login-form" class="login100-form validate-form" action="ToDo.php">
+                    <form id = "login-form" class="login100-form validate-form" method="post">
                         <span class="login100-form-title">
                             Add Task
                         </span>
@@ -103,18 +102,22 @@
                         <div class="wrap-input100 validate-input" >
                             <input id = "New_Task" class="input100" type="text" name="New_task" placeholder="Task Description">
                             <span class="focus-input100"></span>
+                            <span class="symbol-input100">
+                            	<i class="fa fa-tasks" aria-hidden="true"></i>
+                            </span>
                         </div>
     
                         <div class="wrap-input100 validate-input">
                             <input id = "Deadline" class="input100" type="text" name="Deadline" placeholder="Deadline Date">
                             <span class="focus-input100"></span>
+                            <span class="symbol-input100">
+                            	<i class="fa fa-calendar" aria-hidden="true"></i>
+                            </span>
                         </div>
                         <div id = "failMessage">
                         </div>
                         <div class="container-login100-form-btn">
-                            <button id="addbtn" class="login100-form-btn">
-                                Add 
-                            </button>
+                            <button name="addtaskBtn" id="addbtn" class="login100-form-btn" type="submit"> Add </button>
                         </div>
                     </form>
                 </div>

@@ -45,18 +45,15 @@
       <div class="topnav" id="mytopnav">
 	  	<div id = "navContent">
 			<a class="active" href = "UserProfile.php">Profile</a>
-			<?php
-				if($_SESSION['Type'] == 3){
-					echo '<a href = "Notice.php">Notice</a>
-					<a href = "EvaluationSheet.php">Evaluation Sheet</a>';
-				}
-				else {
-					echo '<a href = "Routine.php">Routine</a>
+			<?php if($_SESSION['Type'] == 3){ ?>
+					<a href = "Notice.php">Notice</a>
+					<a href = "EvaluationSheet.php">Evaluation Sheet</a>'
+			<?php } else { ?>
+					<a href = "Routine.php">Routine</a>
 					<a href = "Notice.php">Notice</a>
 					<a href = "EvaluationSheet.php">Evaluation Sheet</a>
-					<a href = "ToDo.php">To Do List</a>';
-				}
-			?>
+					<a href = "ToDo.php">To Do List</a>
+			<?php } ?>
 		</div>
 		<button style="float: right;"id = "logoutButton"><a href="index.php">Log Out</a></button>  
       </div>  
@@ -73,66 +70,63 @@
 							</tr>
 						</thead>
 						<tbody>
-							<?php
-								if($_SESSION['Type'] == 3){
-									echo '<tr>
+							<?php if($_SESSION['Type'] == 3){ ?>
+									<tr>
 									
 										<td class="column1">Name:</td>
-										<td class="column2"> '.$row['F_NAME'].'  </td>
+										<td class="column2"> <?php echo $row['F_NAME']; ?>  </td>
 									</tr>
 									<tr>
 										<td class="column1">Faculty ID:</td>
-										<td class="column2"> '.$row['F_ID'].' </td>
+										<td class="column2"> <?php echo $row['F_ID']; ?> </td>
 									</tr>
 									<tr>
 										<td class="column1">Faculty Email:</td>
-										<td class="column2"> '.$row['F_EMAIL'].' </td>
+										<td class="column2"> <?php echo $row['F_EMAIL']; ?> </td>
 									</tr>
 									<tr>
 										<td class="column1">Department:</td>
-										<td class="column2"> '.$row['D_NAME'].'  </td>
-									</tr>';
-								}
-								else {
-									echo '<tr>
+										<td class="column2"> <?php echo $row['D_NAME']; ?>  </td>
+									</tr>
+							<?php	} else { ?>
+									<tr>
 									
 										<td class="column1">Name:</td>
-										<td class="column2"> '.$row['ST_NAME'].'  </td>
+										<td class="column2"> <?php echo $row['ST_NAME']; ?>  </td>
 									</tr>
 									<tr>
 										<td class="column1">Student ID:</td>
-										<td class="column2"> '.$row['ST_ID'].' </td>
+										<td class="column2"> <?php echo $row['ST_ID']; ?> </td>
 									</tr>
 									<tr>
 										<td class="column1">Email:</td>
-										<td class="column2"> '.$row['ST_ID'].' </td>
+										<td class="column2"> <?php echo $row['EMAIL']; ?> </td>
 									</tr>
 									<tr>
 										<td class="column1">Date of Birth:</td>
-										<td class="column2"> '.$row['DoB'].' </td>
+										<td class="column2"> <?php echo $row['DoB']; ?> </td>
 									</tr>
 									<tr>
 										<td class="column1">Department:</td>
-										<td class="column2"> '.$row['D_NAME'].' </td>
+										<td class="column2"> <?php echo $row['D_NAME']; ?> </td>
 									</tr>
 									<tr>
 										<td class="column1">Program:</td>
-										<td class="column2"> '.$row['P_NAME'].' </td>
+										<td class="column2"> <?php echo $row['P_NAME']; ?> </td>
 									</tr>
 									<tr>
 										<td class="column1">Section:</td>
-										<td class="column2"> '.$row['SEC'].' </td>
+										<td class="column2"> <?php echo $row['SEC']; ?> </td>
 									</tr>
 									<tr>
 										<td class="column1">Lab Group:</td>
-										<td class="column2"> '.$row['GROUP_LAB'].' </td>
+										<td class="column2"> <?php echo $row['GROUP_LAB']; ?> </td>
 									</tr>
 									<tr>
 										<td class="column1">Semester:</td>
-										<td class="column2"> '.$row['SEMESTER'].' </td>
-									</tr>';
-								}
-							?>
+										<td class="column2"> <?php echo $row['SEMESTER']; ?> </td>
+									</tr>
+							<?php } ?>
 						</tbody>
 					</table>
 				 <button style="width:20%" onclick="document.location='ChangePassword.html'"id = "ChangePassBtn" type="button" class="btn btn-success">Change Password</button>
