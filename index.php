@@ -120,7 +120,7 @@
                         </div>
                         <button type="submit" name="loginbtn" class="login100-form-btn">Login</button>
                         <div class="text-center p-t-12">
-                            <a class="txt2" href="ForgotPassword.html">
+                            <a class="txt2" href="ForgotPassword.php">
                                 Forgot Password?
                             </a>
                         </div>

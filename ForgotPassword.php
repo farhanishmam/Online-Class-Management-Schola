@@ -1,3 +1,19 @@
+<?php
+    require __DIR__.'/vendor/autoload.php';
+    use Kreait\Firebase\Factory;
+    $firebase = (new Factory)->withServiceAccount('classroom-management-sys-62bac-firebase-adminsdk-2pync-bbfca3476e.json');
+    $auth = $firebase->createAuth();
+    if(isset($_POST['forgotPassBtn'])){
+        $email=$_POST['forgotemail'];
+        try {
+            $result=$auth->sendPasswordResetLink($email);
+            header("Location:index.php");
+        } catch (Exception $e) {
+        }
+    }
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -27,13 +43,13 @@
 					<img src="images/img-01.png" alt="IMG">
 				</div>
 
-				<form id = 'submitForm' class="login100-form validate-form" action="Login.php">
+				<form id = 'submitForm' class="login100-form validate-form" method=post>
 					<span class="login100-form-title">
 						Forgot Password?
 					</span>
 
 					<div class="wrap-input100 validate-input">
-						<input id = 'email' class="input100" type="email" name="email" placeholder="Email">
+						<input id = 'email' class="input100" type="email" name="forgotemail" placeholder="Email">
 						<span class="focus-input100"></span>
 						<span class="symbol-input100">
 							<i class="fa fa-envelope" aria-hidden="true"></i>
@@ -41,7 +57,7 @@
 					</div>
 					<div id = "message"></div>
 					<div class="container-login100-form-btn">
-						<button class="login100-form-btn">
+						<button class="login100-form-btn" name="forgotPassBtn" type=submit>
 							Submit
 						</button>
 					</div>
@@ -51,28 +67,5 @@
 			</div>
 		</div>
 	</div>
-	<script src="https://www.gstatic.com/firebasejs/8.2.0/firebase-app.js"></script>
-	<script src="https://www.gstatic.com/firebasejs/8.2.0/firebase-auth.js"></script>
-	<script src="https://www.gstatic.com/firebasejs/8.2.0/firebase-firestore.js"></script>
-	<script>
-		// For Firebase JS SDK v7.20.0 and later, measurementId is optional
-		var firebaseConfig = {
-			apiKey: "AIzaSyC779fYGX4FppGMWHRa7adUBOVUFHVmpMc",
-			authDomain: "classroom-management-sys-62bac.firebaseapp.com",
-			databaseURL: "https://classroom-management-sys-62bac.firebaseio.com",
-			projectId: "classroom-management-sys-62bac",
-			storageBucket: "classroom-management-sys-62bac.appspot.com",
-			appId: "1:629847542385:web:45cc8a1e459b99de7669d0",
-			measurementId: "G-5Q3ZRGNXW8"
-		};
-		// Initialize Firebase
-		firebase.initializeApp(firebaseConfig);
-		//make auth and firestore references
-		const auth = firebase.auth();
-		const db = firebase.firestore();
-		//update firestore settings
-		db.settings({timestampsInSnapshots: true});
-	</script>
-	<script src = "ForgotPassword.js"></script>
 </body>
 </html>
