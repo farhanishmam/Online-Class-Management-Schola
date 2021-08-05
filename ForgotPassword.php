@@ -43,7 +43,7 @@
 					<img src="images/img-01.png" alt="IMG">
 				</div>
 
-				<form id = 'submitForm' class="login100-form validate-form" method=post>
+				<form id = 'submitForm' class="login100-form validate-form" method="post">
 					<span class="login100-form-title">
 						Forgot Password?
 					</span>

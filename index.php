@@ -11,7 +11,9 @@
             $signInResult = $auth->signInWithEmailAndPassword($email, $password);
             if($signInResult){
                 session_start();
+                $_SESSION['UID'] = $signInResult->firebaseUserId();
                 $_SESSION['Email'] = $email;
+                $_SESSION['Password'] = $password;
                 $error = "";
                 header("Location:UserProfile.php");
             }

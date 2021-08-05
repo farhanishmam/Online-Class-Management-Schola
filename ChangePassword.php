@@ -1,3 +1,28 @@
+<?php
+    require __DIR__.'/vendor/autoload.php';
+	session_start();
+    use Kreait\Firebase\Factory;
+    $firebase = (new Factory)->withServiceAccount('classroom-management-sys-62bac-firebase-adminsdk-2pync-bbfca3476e.json');
+    $auth = $firebase->createAuth();
+    if(isset($_POST['changePassBtn'])){
+        $PrePass=$_POST['PrePass'];
+		$NewPass=$_POST['NewPass'];
+		$ConfirmPass=$_POST['ConfirmPass'];
+		$OriginalPass=$_SESSION['Password'];
+		$uid=$_SESSION['UID'];
+		if($NewPass==$ConfirmPass){
+			if($OriginalPass==$PrePass){
+				try {
+					$result=$auth->changeUserPassword($uid, $NewPass);
+					$_SESSION['Password']=$NewPass;
+				} catch (Exception $e) {
+				}
+			}
+		}
+        
+    }
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -23,10 +48,15 @@
 <div class="topnav" id="mytopnav">
 	<div id = "navContent">
 			<a class="active" href = "UserProfile.php">Profile</a>
-			<a href = "Routine.php">Routine</a>
-            <a href = "Notice.php">Notice</a>
-            <a href = "EvaluationSheet.php">Evaluation Sheet</a>
-            <a href = "ToDo.php">To Do List</a>
+			<?php if($_SESSION['Type'] == 3){ ?>
+					<a href = "Notice.php">Notice</a>
+					<a href = "EvaluationSheet.php">Evaluation Sheet</a>
+			<?php } else { ?>
+					<a href = "Routine.php">Routine</a>
+					<a href = "Notice.php">Notice</a>
+					<a href = "EvaluationSheet.php">Evaluation Sheet</a>
+					<a href = "ToDo.php">To Do List</a>
+			<?php } ?>
 		</div>
 	<button style="float: right;" id = "logoutButton"><a href="index.php">Log Out</a></button> 
 </div> 
@@ -40,7 +70,7 @@
 					<img src="images/img-01.png" alt="IMG">
 				</div>
 
-				<form id = "submitForm" class="login100-form validate-form" action="Login.php">
+				<form id = "submitForm" class="login100-form validate-form" method="post">
 					<span class="login100-form-title">
 						Change Password
 					</span>
@@ -72,7 +102,7 @@
 					</div>
 					
 					<div class="container-login100-form-btn">
-						<button class="login100-form-btn">
+						<button class="login100-form-btn" name="changePassBtn" type="submit">
 							Submit
 						</button>
 					</div>
@@ -82,25 +112,5 @@
 			</div>
 		</div>
 	</div>
-	<script src="https://www.gstatic.com/firebasejs/8.2.0/firebase-app.js"></script>
-	<script src="https://www.gstatic.com/firebasejs/8.2.0/firebase-auth.js"></script>
-	<script src="https://www.gstatic.com/firebasejs/8.2.0/firebase-firestore.js"></script>
-	<script>
-		// For Firebase JS SDK v7.20.0 and later, measurementId is optional
-		var firebaseConfig = {
-			apiKey: "AIzaSyC779fYGX4FppGMWHRa7adUBOVUFHVmpMc",
-			authDomain: "classroom-management-sys-62bac.firebaseapp.com",
-			databaseURL: "https://classroom-management-sys-62bac.firebaseio.com",
-			projectId: "classroom-management-sys-62bac",
-			storageBucket: "classroom-management-sys-62bac.appspot.com",
-			appId: "1:629847542385:web:45cc8a1e459b99de7669d0",
-			measurementId: "G-5Q3ZRGNXW8"
-		};
-		// Initialize Firebase
-		firebase.initializeApp(firebaseConfig);
-		//make auth and firestore references
-		const auth = firebase.auth();
-	</script>
-	<script src = "ChangePassword.js"></script>
 </body>
 </html>

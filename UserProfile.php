@@ -47,7 +47,7 @@
 			<a class="active" href = "UserProfile.php">Profile</a>
 			<?php if($_SESSION['Type'] == 3){ ?>
 					<a href = "Notice.php">Notice</a>
-					<a href = "EvaluationSheet.php">Evaluation Sheet</a>'
+					<a href = "EvaluationSheet.php">Evaluation Sheet</a>
 			<?php } else { ?>
 					<a href = "Routine.php">Routine</a>
 					<a href = "Notice.php">Notice</a>
@@ -129,7 +129,7 @@
 							<?php } ?>
 						</tbody>
 					</table>
-				 <button style="width:20%" onclick="document.location='ChangePassword.html'"id = "ChangePassBtn" type="button" class="btn btn-success">Change Password</button>
+				 <button style="width:20%" onclick="document.location='ChangePassword.php'"id = "ChangePassBtn" type="button" class="btn btn-success">Change Password</button>
 			</div>
 		</div>
 	</body>
