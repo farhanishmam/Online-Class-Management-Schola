@@ -15,6 +15,7 @@
 				try {
 					$result=$auth->changeUserPassword($uid, $NewPass);
 					$_SESSION['Password']=$NewPass;
+					header("Location:UserProfile.php");
 				} catch (Exception $e) {
 				}
 			}
