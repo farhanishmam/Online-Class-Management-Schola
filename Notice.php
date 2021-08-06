@@ -10,14 +10,15 @@
     
     if($_SESSION['Type'] == 1){
         $result = $conn->query("SELECT DATE_FORMAT(N_DATE,'%d-%b-%Y') AS N_DATE, N_TEXT FROM NOTICES WHERE DPS_ID='$dps' AND (G_LAB='$g_lab' OR G_LAB IS NULL) 
-        AND (SEC='$sec' OR SEC IS NULL) AND (COURSE_ID IS NULL OR COURSE_ID IN (SELECT COURSE_ID FROM ST_COURSES WHERE STUDENT_ID='$id'))");
+        AND (SEC='$sec' OR SEC IS NULL) AND (COURSE_ID IS NULL OR COURSE_ID IN (SELECT COURSE_ID FROM ST_COURSES WHERE STUDENT_ID='$id')) ORDER BY N_DATE");
     }
 	elseif($_SESSION['Type'] == 2){
-        $result = $conn->query("SELECT N_ID, DATE_FORMAT(N_DATE,'%d-%b-%Y') AS N_DATE, N_TEXT FROM NOTICES WHERE DPS_ID='$dps' ");
+        $result = $conn->query("SELECT N_ID, DATE_FORMAT(N_DATE,'%d-%b-%Y') AS N_DATE, N_TEXT FROM NOTICES WHERE DPS_ID='$dps' ORDER BY N_DATE ");
         $courseResult = $conn->query("SELECT C_CODE, C_NAME FROM COURSES WHERE DPS_ID='$dps' ");
     }
     elseif($_SESSION['Type'] == 3){
-        $result = $conn->query("SELECT N_ID, DATE_FORMAT(N_DATE,'%d-%b-%Y') AS N_DATE, N_TEXT FROM NOTICES, COURSES WHERE C_CODE=COURSE_ID AND (FA1_ID='$id' OR FA2_ID='$id') ");
+        $result = $conn->query("SELECT N_ID, DATE_FORMAT(N_DATE,'%d-%b-%Y') AS N_DATE, N_TEXT FROM NOTICES, COURSES WHERE C_CODE=COURSE_ID AND (FA1_ID='$id' OR FA2_ID='$id') ORDER BY N_DATE ");
+        $courseResult = $conn->query("SELECT C_CODE, C_NAME FROM COURSES WHERE FA1_ID='$id' OR FA2_ID='$id' ");
     }
 	if(isset($_POST['addNoticeBtn'])){
         $getcourse=$_POST['Course'];
@@ -25,8 +26,10 @@
         $getglab=$_POST['Lab_group'];
         $gettext=$_POST['New_notice'];
         $getdate=$_POST['NoticeDate'];
-        if($_SESSION['Type'] == 2){
-            
+        if($_SESSION['Type'] == 3){
+            $dpsResult = $conn->query("SELECT DPS_ID FROM COURSES WHERE C_CODE='$getcourse' ");
+            $dpsStore = $dpsResult->fetch_assoc();
+            $dps = $dpsStore['DPS_ID'];
         }
         try{
             $query="INSERT INTO NOTICES (N_DATE,DPS_ID,N_TEXT";
@@ -151,7 +154,7 @@
                                     </span>
                                     <div class="wrap-input100 validate-input">
                                         <select style="border-width: 0px; border:0px; outline:0px;" id="Course"
-                                            class="input100" type="text" name="Course">
+                                            class="input100" type="text" name="Course" <?php if($_SESSION['Type'] == 3) echo 'required'; ?>>
                                             <option value="<?php echo NULL;?>" style="display: none;">Course</option>
                                         <?php while ($courses = $courseResult->fetch_assoc()){ ?>
                                             <option value="<?php echo $courses['C_CODE']?>">
@@ -199,7 +202,7 @@
 
                                     <div class="wrap-input100 validate-input">
                                         <input id="New_notice" class="input100" type="text" name="New_notice"
-                                            placeholder="Content of the notice" maxlength="160">
+                                            placeholder="Content of the notice" minlength="10" maxlength="160" required>
                                         <span class="focus-input100"></span>
                                         <span class="symbol-input100">
                                             <i class="fa fa-bell" aria-hidden="true"></i>
