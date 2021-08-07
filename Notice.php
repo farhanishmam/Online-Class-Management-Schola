@@ -113,15 +113,14 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <?php if($_SESSION['Type'] != 1){ ?>
-                    <?php while ($row = $result->fetch_assoc()){ ?>
+                    <?php if($_SESSION['Type'] != 1){   while ($row = $result->fetch_assoc()){ ?>
                     <tr>
                         <td class="column1"> <?php echo $row['N_DATE']; ?></td>
                         <td class="column2"> <?php echo $row['N_TEXT']; ?></td>
                         <td class="column3"><a href="NoticeDelete.php?id=
 									<?php 
 										echo $row['N_ID'];
-									?>" class="delete">X</a></td>
+									?>" class="delete">x</a></td>
                     </tr>
                     <?php } } else {  while ($row = $result->fetch_assoc()){ ?>
                     <tr>

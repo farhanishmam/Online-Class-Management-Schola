@@ -77,7 +77,7 @@
                         <td class="column4"><a href="ToDoDelete.php?id=
 									<?php 
 										echo $row['TD_ID'];
-									?>" class="delete">X</a></td>
+									?>" class="delete">x</a></td>
                     </tr>
                     <?php } ?>
                 </tbody>
@@ -103,7 +103,7 @@
 
                                     <div class="wrap-input100 validate-input">
                                         <input id="New_Task" class="input100" type="text" name="New_task"
-                                            placeholder="Task Description" maxlength="160">
+                                            placeholder="Task Description" minlength="10" maxlength="160" required>
                                         <span class="focus-input100"></span>
                                         <span class="symbol-input100">
                                             <i class="fa fa-tasks" aria-hidden="true"></i>

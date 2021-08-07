@@ -237,7 +237,66 @@ tbody tr:hover {
   width: 110px;
   text-align: center;
 }
-
+.column10 {
+  width: 110px;
+  text-align: center;
+}
+.column11 {
+  width: 110px;
+  text-align: center;
+}
+.column12 {
+  width: 110px;
+  text-align: center;
+}
+.column13 {
+  width: 110px;
+  text-align: center;
+}
+.column14 {
+  width: 110px;
+  text-align: center;
+}
+.column15 {
+  width: 110px;
+  text-align: center;
+}
+.column16 {
+  width: 110px;
+  text-align: center;
+}
+.column17 {
+  width: 110px;
+  text-align: center;
+}
+.column18 {
+  width: 110px;
+  text-align: center;
+}
+.column19 {
+  width: 110px;
+  text-align: center;
+}
+.column20 {
+  width: 110px;
+  text-align: center;
+}
+.column21 {
+  width: 110px;
+  text-align: center;
+}
+.column22 {
+  width: 110px;
+  text-align: center;
+}
+.column23 {
+  width: 110px;
+  text-align: center;
+}
+.column24 {
+  width: 110px;
+  text-align: center;
+}
 
 .btn:hover {
   background: #333333;
@@ -327,7 +386,19 @@ tbody tr:hover {
   transform: translate(0%, -50%);
 }
 
-.delete:hover {background: rgba(255,0,0,0.5);}
+.delete:hover {background: rgba(255,0,0,0.5); color: #fff}
+
+.add {
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  right: 0%;
+  padding: 12px 16px;
+  transform: translate(0%, -50%);
+}
+
+.add:hover {background: rgba(0,255,0,0.5); color: #fff;}
+
 
 .stdcolumn1 {
   width: auto;
