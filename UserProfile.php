@@ -20,6 +20,7 @@
         $_SESSION['GROUP_LAB'] = $row['GROUP_LAB'];
         $_SESSION['DPS_ID'] = $row['ST_DPS_ID'];
 	}
+    $_SESSION['EvalRows']=0;
 ?>
 <!DOCTYPE html>
 <html lang="en">

@@ -2,7 +2,6 @@
 	session_start();
 	include 'sql-conn.php';
 	$id = $_SESSION['ID'];
-    
     if($_SESSION['Type'] != 3){
         $result = $conn->query("SELECT * FROM ST_COURSES WHERE STUDENT_ID='$id' ORDER BY COURSE_ID");
         while($row=$result->fetch_assoc()){
@@ -19,7 +18,19 @@
             $courseElements[]=$row;
         }
     }
-	if(isset($_POST['addNoticeBtn'])){
+    if($_SESSION['EvalRows']==0){
+        $j=0;
+        foreach ($courseElements as $item){ 
+            for($i=1; $i<25; $i++){
+                if($item['LEC_'.$i.''])
+                    $j=($j<$i?$i:$j);
+            }
+        }
+        $_SESSION['EvalRows']=$j;
+    }
+	if(isset($_POST['addRowBtn'])){
+        if($_SESSION['EvalRows']<24)
+            $_SESSION['EvalRows']++;
     }
 ?>
 
@@ -47,8 +58,6 @@
     <link rel="stylesheet" type="text/css" href="assets/css_bookroom/main.css">
     <link rel="stylesheet" type="text/css" href="assets/css_otherform/main.css">
     <link rel="stylesheet" type="text/css" href="assets/css_bookroom/util.css">
-    <link rel="stylesheet" type="text/css" href="assets/css_routine/main.css">
-    <link rel="stylesheet" type="text/css" href="assets/css_routine/util.css">
     <!--===============================================================================================-->
     <div class="topnav" id="mytopnav">
         <div id="navContent">
@@ -69,149 +78,39 @@
 
 <body>
     <div class="limiter">
-        <div class="container-table100">
-            <div class="wrap-table100">
-                <div id="containerTable" class="table100 ver1 m-b-110">
-                    <!-- Contents of the table will be dynamically loaded -->
-                    <table id="EvaShtTbl" data-vertable="ver1">
-                        <thead>
-                            <tr class="row100-head">
-                                <?php $i=0; foreach ($courseElements as $item){ $i++;?>
-                                <th style="text-align:center;" class="column100 column<?php echo $i ?>" data-column="column<?php echo $i ?>"><?php echo $item['C_CODE'] ?></th>
-                                <?php } ?>
-                            </tr>
-                        </thead>
-                        <tbody>
-                        <?php for($i=1; $i<25; $i++){?>
-                            <tr class="row100">
-                                <?php foreach ($courseElements as $item){  if($item['LEC_'.$i.'']){ ?>
-                                <td class="column100 column<?php echo $i?>">Lec <?php echo $i ?><a class="delete">x</a></td>
-
-                                <?php } else { ?>
-                                <td class="column100 column<?php echo $i?>"> <a class="add">+</a></td>
-                                <?php } } ?>
-                            </tr>
+        <div id="containerTable" class="container-table100">
+            <!-- Contents of the table will be dynamically loaded -->
+            <table id="EvaShtTbl" style="margin-top:5%; margin-bottom:5%">
+                <thead>
+                    <tr class="table100-head">
+                        <?php $i=0; foreach ($courseElements as $item){ $i++;?>
+                        <th style="text-align:center;" class="column<?php echo $i ?>"><?php echo $item['C_CODE'] ?></th>
                         <?php } ?>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-            <button style="width:13%; margin-left: 65%; margin-top:-15%" id="addLecBtn" type="button"
-                class="btn btn-success">Add Lecture</button>
-            <div id="MyModal" class="modal" tabindex="-1" role="dialog">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title"></h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <div class="modal-header">
-                            <div class="wrap-login100">
-                                <form id="login-form" class="login100-form validate-form"
-                                    action="EvaluationSheet-CR.html">
-                                    <span class="login100-form-title">
-                                        Add Lecture
-                                    </span>
-
-                                    <div class="wrap-input100 validate-input">
-                                        <select style="border-width: 0px; border:0px; outline:0px;" id="Course"
-                                            class="input100" type="text" name="Course">
-                                            <option value="volvo" style="display: none;">Course</option>
-                                            <option value="saab">Mpal</option>
-                                            <option value="opel">Os</option>
-                                            <option value="audi">Math</option>
-                                        </select>
-                                        <span class="focus-input100"></span>
-                                        <span class="symbol-input100">
-                                            <i class="fa fa-book" aria-hidden="true"></i>
-                                        </span>
-                                    </div>
-
-                                    <div class="wrap-input100 validate-input">
-                                        <input id="Drive_Link" class="input100" type="text" name="Drive_Link"
-                                            placeholder="Drive Link">
-                                        <span class="focus-input100"></span>
-                                        <span class="symbol-input100">
-                                            <i class="fa fa-link" aria-hidden="true"></i>
-                                        </span>
-                                    </div>
-                                    <div id="failMessage">
-                                    </div>
-                                    <div class="container-login100-form-btn">
-                                        <button id="submitbtn" class="login100-form-btn">
-                                            Submit
-                                        </button>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <br>
-            <button style="width:13%; margin-top:-15%;" id="delLecBtn" type="button" class="btn btn-danger">Delete
-                Lecture</button>
-            <div id="DelModal" class="modal" tabindex="-1" role="dialog">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title"></h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <div class="modal-header">
-                            <div class="wrap-login100">
-                                <form id="login-form" class="login100-form validate-form"
-                                    action="EvaluationSheet-CR.html">
-                                    <span class="login100-form-title">
-                                        Delete Lecture
-                                    </span>
-
-                                    <div class="wrap-input100 validate-input">
-                                        <select style="border-width: 0px; border:0px; outline:0px;" id="Course"
-                                            class="input100" type="text" name="Course">
-                                            <option style="display: none;">Course</option>
-                                            <option value="Mpal">Mpal</option>
-                                            <option value="Os">Os</option>
-                                            <option value="Math">Math</option>
-                                        </select>
-                                        <span class="focus-input100"></span>
-                                        <span class="symbol-input100">
-                                            <i class="fa fa-book" aria-hidden="true"></i>
-                                        </span>
-                                    </div>
-                                    <div class="wrap-input100 validate-input">
-                                        <select style="border-width: 0px; border:0px; outline:0px;" id="LecNum"
-                                            class="input100" type="text" name="LecNum">
-                                            <option style="display: none;">Lecture Number</option>
-                                            <option value="1">1</option>
-                                            <option value="2">2</option>
-                                            <option value="3">3</option>
-                                        </select>
-                                        <span class="focus-input100"></span>
-                                        <span class="symbol-input100">
-                                            <i class="fa fa-file" aria-hidden="true"></i>
-                                        </span>
-                                    </div>
-                                    <div id="failMessage">
-                                    </div>
-                                    <div class="container-login100-form-btn">
-                                        <button id="submitbtn" class="login100-form-btn">
-                                            Submit
-                                        </button>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php for($i=1; $i<=$_SESSION['EvalRows']; $i++){ ?>
+                    <tr>
+                        <?php foreach ($courseElements as $item){ ?>
+                        <?php if($item['LEC_'.$i.'']){  ?>
+                                <td class="column<?php echo $i ?>">Lec <?php echo $i ?>
+                        <?php if($_SESSION['Type'] != 1){ ?>
+                                <a href="DelLec.php?id=<?php echo $item['C_CODE']; ?>&i=<?php echo $i ?>" class="delete">x</a></td>
+                        <?php }} else {  ?>
+                                <td class="column<?php echo $i ?>">
+                        <?php if($_SESSION['Type'] != 1) {?>
+                                <a href="AddLec.php?id=<?php echo $item['C_CODE']; ?>&i=<?php echo $i ?>" class="add">+</a></td>
+                        <?php }}} ?>
+                    </tr>
+                    <?php } ?>
+                </tbody>
+            </table>
+            <?php if($_SESSION['Type'] != 1){ ?>
+            <form style="width:100%;" method="post">
+                <button style="width:14%; margin-bottom:5%; margin-left: 43%;" name="addRowBtn" id="RowBtn" type="submit" class="btn btn-success">Add Row</button>
+            </form>
+            <?php } ?>
         </div>
     </div>
     <script src="EvalSheet.js"></script>
-    <script src="EvalALecM.js"></script>
-    <script src="EvalDLecM.js"></script>
 </body>
