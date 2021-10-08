@@ -94,7 +94,7 @@
             <a href="ToDo.php">To Do List</a>
             <?php } ?>
         </div>
-        <button style="float: right;" id="logoutButton"><a href="index.html">Log Out</a></button>
+        <button style="float: right;" id="logoutButton"><a href="index.php">Log Out</a></button>
     </div>
 </head>
 
