@@ -66,7 +66,7 @@
                     <?php while ($row = $result->fetch_assoc()){ ?>
                     <tr>
                         <td class="column1">
-                            <label class="container" style="margin-bottom: 20px; margin-left: -85px">
+                            <label class="container" style="margin-bottom: 20px; margin-left: -65px">
                                 <a href="ToDoCheckBox.php?id=<?php echo $row['TD_ID']?>">
                                     <input type="checkbox" <?php echo ($row['DONE_FLAG'] ? 'checked' : ''); ?>>
                                     <span class="checkmark"></span></a>
