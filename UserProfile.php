@@ -1,7 +1,7 @@
 <?php
 	session_start();
 	include 'sql-conn.php';
-	$email = $_COOKIE['email'];
+	$email = $_SESSION['Email'];
 	$result = $conn->query("SELECT F_NAME,F_ID, F_EMAIL, D_NAME FROM FACULTY_PROFILE where F_EMAIL = '$email' ");
 	$row = $result->fetch_assoc();
 	if($row) {
