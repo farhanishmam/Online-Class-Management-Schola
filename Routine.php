@@ -1,7 +1,7 @@
 <?php
 	session_start();
 	include 'sql-conn.php';
-	$email = $_SESSION['Email'];
+	$email = $_SESSION['email'];
 	$result = $conn->query("SELECT COURSE_CODE, WEEKDAYS, SLOT, C_LINK FROM STUDENT_ROUTINE where ST_EMAIL = '$email' ");
 	$j=1;
 	function displayRoutine($j, $result) {
